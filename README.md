@@ -26,19 +26,19 @@ pip install gcmaverager
 
 # Get started
 GCMAverager supports sereral kinds of average method:
-⋅⋅* ANN (annual mean)
-⋅⋅* MAM (March-April-May, annual mean) 
-⋅⋅* JJA (June-July-August, annual mean) 
-⋅⋅* SON (September-October-November, annual mean) 
-⋅⋅* DJF (December-January-February, annual mean) 
+* ANN (annual mean)
+* MAM (March-April-May, annual mean) 
+* JJA (June-July-August, annual mean) 
+* SON (September-October-November, annual mean) 
+* DJF (December-January-February, annual mean) 
 
-⋅⋅* decadal-ANN (decadal annual mean)
-⋅⋅* decadal-MAM (March-April-May, decadal annual mean) 
-⋅⋅* decadal-SON (June-July-August, decadal annual mean) 
-⋅⋅* decadal-JJA (September-October-November, decadal annual mean) 
-⋅⋅* decadal-DJF (December-January-February, decadal annual mean) 
+* decadal-ANN (decadal annual mean)
+* decadal-MAM (March-April-May, decadal annual mean) 
+* decadal-SON (June-July-August, decadal annual mean) 
+* decadal-JJA (September-October-November, decadal annual mean) 
+* decadal-DJF (December-January-February, decadal annual mean) 
 
-⋅⋅* TS (extract time series file from original GCM outputs)
+* TS (extract time series file from original GCM outputs)
 
 ```
     # rootDir = '/Volumes/Chengfei_Data_Center/iTrace/test_ts/'
