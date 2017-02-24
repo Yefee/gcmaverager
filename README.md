@@ -6,7 +6,7 @@ NCAR has developed two fancy tools: pyAverager and pyReshaper, which are do the 
 
 GCMAverager is a [xarray-based](https://github.com/pydata/xarray) project, therefore python 2.7+ and 3.x are supported.
 Right now, GCMAverager primarily can 
-* extract variables from time slice history files into time seris files;
+* extract variables from time slice history files into time series files;
 * compute annual (decadal) and seasonal mean for model outputs from time slice or time series files. 
 
 
