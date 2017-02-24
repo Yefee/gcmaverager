@@ -39,7 +39,7 @@ GCMAverager supports sereral kinds of average method:
 * TS (extract time series file from original GCM outputs)
 
 ### Extract time series file from time slice files
-This featre only suppport Py 3.x.
+This featre only suppports Py 3.x.
 
 ```
     import gcmaverager as ga
@@ -69,7 +69,7 @@ The outputs are in tarDir, which has pattern prefix+variable+suffix+'.nc'(e.g. t
 
 
 ### Compute average from time slice files
-This featre only suppport Py 3.x.
+This featre only suppports Py 3.x.
 
 ```
 
@@ -104,7 +104,6 @@ The outputs are in tarDir, which has pattern prefix+variable+suffix+'ANN.nc'(e.g
 ```
 
     import gcmaverager as ga
-    import xarray as xr
 
     rootDir = '/Volumes/Chengfei_Data_Center/iTrace/test/'
     tarDir = '/Volumes/Chengfei_Data_Center/iTrace/output/'
