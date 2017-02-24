@@ -1,7 +1,7 @@
 from setuptools import setup
 
 setup(name='gcmaverager',
-      version='0.11',
+      version='0.12',
       description='A lightweight parallel post process package for GCM output.',
       url='https://github.com/Yefee/gcmaverager',
       author='Chengfei He',
