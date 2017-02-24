@@ -31,7 +31,6 @@ GCMAverager supports sereral kinds of average method:
 * JJA (June-July-August, annual mean) 
 * SON (September-October-November, annual mean) 
 * DJF (December-January-February, annual mean) 
-
 * decadal-ANN (decadal annual mean)
 * decadal-MAM (March-April-May, decadal annual mean) 
 * decadal-SON (June-July-August, decadal annual mean) 
@@ -40,28 +39,84 @@ GCMAverager supports sereral kinds of average method:
 
 * TS (extract time series file from original GCM outputs)
 
-```
-    # rootDir = '/Volumes/Chengfei_Data_Center/iTrace/test_ts/'
-    # tarDir = '/Volumes/Chengfei_Data_Center/iTrace/output/'
-    # prefix = 'b.123.test'
-    # method = ['decadal-ANN', 'decadal-MAM']
-    # fl = getFilelist(rootDir)
-    # fl = [l for l in fl if '.nc' in l]
+### Extract time series file from time slice files
+This featre only suppport Py 3.x.
 
-    # averager(fl, tarDir, method)
+```
+    import gcmaverager as ga
+    import xarray as xr
 
     rootDir = '/Volumes/Chengfei_Data_Center/iTrace/test/'
     tarDir = '/Volumes/Chengfei_Data_Center/iTrace/output/'
-    prefix = 'b.123.test'
-    suffix = 'time_bound'
-    method = ['decadal-ANN']
-```
-    fl = getFilelist(rootDir)
-    ds = xr.open_mfdataset(fl[0:12], decode_times=False)
+    prefix = 'test'
+    suffix = '0001-0999'
+    method = ['TS']
 
+    # get file list and create an xarray object
+    fl = ga.getFilelist(rootDir)
+    ds = xr.open_mfdataset(fl, decode_times=False)
+
+    # derive time dependent variables
     varList = ds.variables.keys()
     varList = [v for v in varList if "time" in ds[
         v].dims and len(ds[v].dims) > 2]
 
+    # feed it to GAMAverager
     fl = [ds[var] for var in varList]
-    averager(fl, tarDir, prefix, suffix,  method)
+    ga.averager(fl, tarDir, prefix, suffix,  method)
+```
+
+The outputs are in tarDir, which has pattern prefix+variable+suffix+'.nc'(e.g. test.TEMP.0001-0999.nc)
+
+
+### Compute average from time slice files
+This featre only suppport Py 3.x.
+
+```
+
+    import gcmaverager as ga
+    import xarray as xr
+
+    rootDir = '/Volumes/Chengfei_Data_Center/iTrace/test/'
+    tarDir = '/Volumes/Chengfei_Data_Center/iTrace/output/'
+    prefix = 'test'
+    suffix = '0001-0999'
+    method = ['ANN', 'decadal-ANN']
+
+    # get file list and create an xarray object
+    fl = ga.getFilelist(rootDir)
+    ds = xr.open_mfdataset(fl, decode_times=False)
+
+    # derive time dependent variables
+    varList = ds.variables.keys()
+    varList = [v for v in varList if "time" in ds[
+        v].dims and len(ds[v].dims) > 2]
+
+    # feed it to GAMAverager
+    fl = [ds[var] for var in varList]
+    ga.averager(fl, tarDir, prefix, suffix,  method)
+
+```
+The outputs are in tarDir, which has pattern prefix+variable+suffix+'ANN.nc'(e.g. test.TEMP.0001-0999.ANN.nc)
+
+
+### Compute average from time series files
+
+```
+
+    import gcmaverager as ga
+    import xarray as xr
+
+    rootDir = '/Volumes/Chengfei_Data_Center/iTrace/test/'
+    tarDir = '/Volumes/Chengfei_Data_Center/iTrace/output/'
+    prefix = 'test'
+    suffix = '0001-0999'
+    method = ['ANN', 'decadal-ANN']
+
+    # get file list and create an xarray object
+    fl = ga.getFilelist(rootDir)
+
+    # feed it to GAMAverager
+    ga.averager(fl, tarDir, prefix, suffix,  method)
+
+```
