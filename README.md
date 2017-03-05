@@ -1,10 +1,10 @@
 # About GCMAverager
 
-GCMAverger is a lightweight parallel post process package designed for large amount general circulation model(GCM) outputs.
+GCMAverger is a lightweight post process package designed for large amount general circulation model(GCM) outputs using parallel computing.
 It was originally designed to post process a long run from the community earth system model (CESM), who genreated hundreds of TBs data.
-NCAR has developed two fancy tools: pyAverager and pyReshaper, which are do the samething as GAMAverager do, however, they are pooly maintained and not easy to use.
+NCAR has developed two fancy tools: pyAverager and pyReshaper, which do the samething as GAMAverager, however, they are pooly maintained and not easy to use.
 
-GCMAverager is a [xarray-based](https://github.com/pydata/xarray) project, therefore python 2.7+ and 3.x are supported.
+GCMAverager is a [xarray-based](https://github.com/pydata/xarray) project, therefore python 2.7, 3.4, 3.5, and 3.6 are supported.
 Right now, GCMAverager primarily can 
 * extract variables from time slice history files into time series files;
 * compute annual (decadal) and seasonal mean for model outputs from time slice or time series files. 
@@ -12,20 +12,20 @@ Right now, GCMAverager primarily can
 
 
 # Installation
-### using github
+### via github
 ```
 git clone https://github.com/Yefee/gcmaverager.git
 cd gcmaverager
 python setup.py install
 ```
 
-### using pip
+### via pip
 ```
 pip install gcmaverager
 ```
 
 # Get started
-GCMAverager supports sereral kinds of average method:
+GCMAverager supports several kinds of average method:
 * ANN (annual mean)
 * MAM (March-April-May, annual mean) 
 * JJA (June-July-August, annual mean) 
