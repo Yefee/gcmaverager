@@ -1,3 +1,7 @@
+# from __future__ import absolute_import
+# from __future__ import division
+# from __future__ import print_function
+
 import os
 import sys
 from functools import partial
@@ -207,28 +211,29 @@ def averager(file, tarDir, prefix, suffix, method):
     pool.close()
     pool.join()
 
-if __name__ == "__main__":
-    # rootDir = '/Volumes/Chengfei_Data_Center/iTrace/test_ts/'
-    # tarDir = '/Volumes/Chengfei_Data_Center/iTrace/output/'
-    # prefix = 'b.123.test'
-    # method = ['decadal-ANN', 'decadal-MAM']
-    # fl = getFilelist(rootDir)
-    # fl = [l for l in fl if '.nc' in l]
+# if __name__ == "__main__":
+#     # rootDir = '/Volumes/Chengfei_Data_Center/iTrace/test_ts/'
+#     # tarDir = '/Volumes/Chengfei_Data_Center/iTrace/output/'
+#     # prefix = 'b.123.test'
+#     # method = ['decadal-ANN', 'decadal-MAM']
+#     # fl = getFilelist(rootDir)
+#     # fl = [l for l in fl if '.nc' in l]
 
-    # averager(fl, tarDir, method)
+#     # averager(fl, tarDir, method)
 
-    rootDir = '/Volumes/Chengfei_Data_Center/iTrace/test/'
-    tarDir = '/Volumes/Chengfei_Data_Center/iTrace/output/'
-    prefix = 'b.123.test'
-    suffix = 'time_bound'
-    method = ['decadal-ANN']
+#     rootDir = '/Volumes/Chengfei_Data_Center/Trace/'
+#     tarDir = '/Volumes/Chengfei_Data_Center/Trace/atm/ANN/'
+#     prefix = 'TRACE.ice_orb_ghgs_mwtr.01'
+#     suffix = '22k-0k.ANN'
+#     method = ['TS']
 
-    fl = getFilelist(rootDir)
-    ds = xr.open_mfdataset(fl[0:12], decode_times=False)
+#     fl = getFilelist(rootDir)
+#     fl = [f  for f in fl if 'cam' in f]
+#     ds = xr.open_dataset(fl[0], decode_times=False)
 
-    varList = ds.variables.keys()
-    varList = [v for v in varList if "time" in ds[
-        v].dims and len(ds[v].dims) > 2]
+#     varList = ds.variables.keys()
+#     varList = [v for v in varList if "time" in ds[
+#         v].dims and len(ds[v].dims) > 2]
 
-    fl = [ds[var] for var in varList]
-    averager(fl, tarDir, prefix, suffix,  method)
+#     fl = [ds[var] for var in varList]
+#     averager(fl, tarDir, prefix, suffix,  method)
