@@ -25,15 +25,19 @@ def _compMean(file, tarDir, prefix, suffix, method):
     if sys.version_info[0] < 3:
         if isinstance(file, basestring):
             ds = xr.open_dataset(file, decode_times=False)
-        elif isinstance(file, xr.Dataset) or isinstance(file, xr.DataArray):
+        elif isinstance(file, xr.Dataset):
             ds = file
+        elif isinstance(file, xr.DataArray):
+            ds = file.to_dataset()
         else:
             raise ValueError("The file is not supported!")
     else:
         if isinstance(file, str):
             ds = xr.open_dataset(file, decode_times=False)
-        elif isinstance(file, xr.Dataset) or isinstance(file, xr.DataArray):
+        elif isinstance(file, xr.Dataset):
             ds = file
+        elif isinstance(file, xr.DataArray):
+            ds = file.to_dataset()
         else:
             raise ValueError("The file is not supported!")
 
@@ -65,9 +69,11 @@ def _compMean(file, tarDir, prefix, suffix, method):
     djf.sort()
 
     # write out as TS file
-    if "TS" in method and isinstance(ds, xr.DataArray):
-        ds.to_netcdf(tarDir + prefix + '.' + ds.name + '.' + suffix + '.nc')
-
+    if "TS" in method:
+        if isinstance(ds, xr.DataArray):
+            ds.to_netcdf(tarDir + prefix + '.' + ds.name + '.' + suffix + '.nc')
+        elif isinstance(ds, xr.Dataset):
+            ds.to_netcdf(tarDir + prefix + '.' + ds.name + '.' + suffix + '.nc')
 
     # define time coordinate used for compute mean
     ds = ds.assign_coords(time_cp=ds.time)

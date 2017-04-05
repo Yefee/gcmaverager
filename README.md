@@ -53,7 +53,7 @@ This feature only suppports Py 3.x.
 
     # get file list and create an xarray object
     fl = ga.getFilelist(rootDir)
-    ds = xr.open_mfdataset(fl, decode_times=False)
+    ds = xr.open_mfdataset(fl, decode_times=False, atuoclose=True)
 
     # derive time dependent variables
     varList = ds.variables.keys()
@@ -84,7 +84,7 @@ This feature only suppports Py 3.x.
 
     # get file list and create an xarray object
     fl = ga.getFilelist(rootDir)
-    ds = xr.open_mfdataset(fl, decode_times=False)
+    ds = xr.open_mfdataset(fl, decode_times=False, atuoclose=True)
 
     # derive time dependent variables
     varList = ds.variables.keys()
