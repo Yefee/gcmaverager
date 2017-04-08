@@ -158,7 +158,7 @@ def _compMean(file, tarDir, prefix, suffix, method):
             ann_mean = ann_mean.swap_dims({'time_cp': 'time'})
             ann_mean = ann_mean.drop('time_cp')
             ann_mean.attrs = ds[var].attrs
-            ann_mean.to_netcdf(tarDir + prefix + '.' + var + '.' + suffix + '.ANN.MAM.nc')
+            ann_mean.to_netcdf(tarDir + prefix + '.' + var + '.' + suffix + '.ANN.nc')
 
         if "MAM" in method:
             mam_mean = ds[var].isel(time_cp=mam).groupby(
