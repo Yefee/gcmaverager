@@ -73,6 +73,7 @@ def _compMean(file, tarDir, prefix, suffix, method):
         if isinstance(ds, xr.DataArray):
             ds.to_netcdf(tarDir + prefix + '.' + ds.name + '.' + suffix + '.nc')
         elif isinstance(ds, xr.Dataset):
+            ds = ds.to_array()
             ds.to_netcdf(tarDir + prefix + '.' + ds.name + '.' + suffix + '.nc')
 
     # define time coordinate used for compute mean
