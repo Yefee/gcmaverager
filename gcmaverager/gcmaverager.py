@@ -22,6 +22,15 @@ def getFilelist(rootDir):
 
 def _compMean(file, tarDir, prefix, suffix, method):
 
+
+    # write out as TS file
+    if "TS" in method:
+        if isinstance(ds, xr.DataArray):
+            ds.to_netcdf(tarDir + prefix + '.' + ds.name + '.' + suffix + '.nc')
+        elif isinstance(ds, xr.Dataset):
+            ds = ds.to_array()
+            ds.to_netcdf(tarDir + prefix + '.' + ds.name + '.' + suffix + '.nc')
+
     if sys.version_info[0] < 3:
         if isinstance(file, basestring):
             ds = xr.open_dataset(file, decode_times=False)
@@ -68,13 +77,7 @@ def _compMean(file, tarDir, prefix, suffix, method):
     djf = np.hstack((dec, jan, feb))
     djf.sort()
 
-    # write out as TS file
-    if "TS" in method:
-        if isinstance(ds, xr.DataArray):
-            ds.to_netcdf(tarDir + prefix + '.' + ds.name + '.' + suffix + '.nc')
-        elif isinstance(ds, xr.Dataset):
-            ds = ds.to_array()
-            ds.to_netcdf(tarDir + prefix + '.' + ds.name + '.' + suffix + '.nc')
+
 
     # define time coordinate used for compute mean
     ds = ds.assign_coords(time_cp=ds.time)
